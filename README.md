@@ -1,89 +1,54 @@
-## publish-release
+# gulp-github-release
 
+Create GitHub releases with assets.
 
-Create GitHub releases with assets from CLI, or from JS.
-
-[![Build Status](https://travis-ci.org/remixz/publish-release.svg?branch=master)](https://travis-ci.org/remixz/publish-release)
-
-[![js-standard-style](https://raw.githubusercontent.com/feross/standard/master/badge.png)](https://github.com/feross/standard)
-
-### Installation
-
-[![NPM](https://nodei.co/npm/publish-release.png)](https://nodei.co/npm/publish-release/)
+## Installation
 
 ```
-npm install --save publish-release
-npm install -g publish-release # CLI
+npm install --save-dev gulp-github-release
 ```
 
-### CLI Usage
-
-The CLI looks in 2 places for configuration: arguments passed, and a `publishRelease` object (see the [API usage](#api-usage) below for the format) in the `package.json`. If it can't find the info it needs from those places, it will run a wizard. This means that you can create a release just by running `publish-release`, and following the wizard. 
-
-```
-$ publish-release --help
-Usage: publish-release {options}
-
-Options:
-
-  --token [token]                 GitHub oAuth token.
-
-  --owner [owner]                 GitHub owner of the repository.
-                                  Defaults to parsing repository field in 
-                                  the project's package.json
-
-  --repo [repo]                   GitHub repository name.
-                                  Defaults to parsing repository field in 
-                                  the project's package.json
-
-  --tag [tag]                     Git tag to base the release off of.
-                                  Defaults to latest tag.
-
-  --name [name]                   Name of the new release.
-                                  Defaults to the name field in the
-                                  package.json, plus the git tag.
-
-  --notes [notes]                 Notes to add to release, written in Markdown.
-                                  Defaults to opening the $EDITOR.
-
-  --template [path to template]   Markdown file to open for editing notes.
-                                  Will open the template in $EDITOR.
-
-  --draft                         Pass this flag to set the release as a draft.
-
-  --prerelease                    Pass this flag to set the release as a 
-                                  prerelease.
-
-  --assets [files]                Comma-separated list of filenames.
-                                  Ex: --assets foo.txt,bar.zip
-```
-
-### API Usage
-
-Using it from the API will not inherit any configuration properties from other sources (i.e. the package.json), and requires you to pass all properties in yourself.
+## Usage
 
 ```js
-var publishRelease = require('publish-release')
+var release = require('gulp-github-release');
 
-publishRelease({
-  token: 'token',
-  owner: 'remixz',
-  repo: 'publish-release',
-  tag: 'v1.0.0',
-  name: 'publish-release v1.0.0',
-  notes: 'very good!',
-  draft: false,
-  prerelease: false,
-  assets: ['/absolute/path/to/file']
-}, function (err, release) {
-  // `release`: object returned from github about the newly created release
-})
+gulp.task('release', function(){
+  gulp.src('./dist/some-file.exe')
+    .pipe(release({
+      token: 'token',                     // or you can set an env var called GITHUB_TOKEN instead
+      owner: 'remixz',                    // if missing, it will be extracted from manifest (the repository.url field)
+      repo: 'publish-release',            // if missing, it will be extracted from manifest (the repository.url field)
+      tag: 'v1.0.0',                      // if missing, the version will be extracted from manifest and prepended by a 'v'
+      name: 'publish-release v1.0.0',     // if missing, it will be the same as the tag
+      notes: 'very good!',                // if missing it will be left undefined
+      draft: false,                       // if missing it's false
+      prerelease: false,                  // if missing it's false
+      manifest: require('./package.json') // package.json from which default values will be extracted if they're missing
+    }));
+});
 ```
 
-`publish-release` emits the following events on the API:
+## License
 
-* `create-release` - Emits before the request is made to create the release.
-* `created-release` - Emits after the request is made successfully.
-* `upload-asset` - `{name}` - Emits before an asset file starts uploading. Emits the `name` of the file.
-* `upload-progress` - `{name, progress}` - Emits while a file is uploading. Emits the `name` of the file, and a `progress` object from [`progress-stream`](https://github.com/freeall/progress-stream).
-* `uploaded-asset` - `{name}` - Emits after an asset file is successfully uploaded. Emits the `name` of the file.
+The MIT License (MIT)
+
+Copyright (c) 2015 Alexandru Rosianu
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
