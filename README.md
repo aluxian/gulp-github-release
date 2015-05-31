@@ -1,6 +1,6 @@
 # gulp-github-release
 
-Create GitHub releases with assets.
+Create GitHub releases and upload assets.
 
 ## Installation
 
