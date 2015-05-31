@@ -1,14 +1,15 @@
 {
   "name": "gulp-github-release",
-  "version": "1.0.1",
-  "description": "Create GitHub releases with assets",
+  "version": "1.0.2",
+  "description": "Create GitHub releases and upload assets.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:Aluxian/Facebook-Messenger-Desktop.git"
+    "url": "git@github.com:Aluxian/gulp-github-release.git"
   },
   "keywords": [
-    "gulpplugin",
+    "gulp",
+    "plugin",
     "github",
     "release",
     "assets",
@@ -21,11 +22,8 @@
   },
   "homepage": "https://github.com/Aluxian/gulp-github-release",
   "dependencies": {
-    "gulp-util": "^3.0.4",
+    "gulp-util": "^3.0.5",
     "publish-release": "^1.0.2",
-    "through2": "^0.6.3"
-  },
-  "devDependencies": {
-    "gulp": "^3.8.11"
+    "through2": "^0.6.5"
   }
 }
