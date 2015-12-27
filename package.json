@@ -1,6 +1,6 @@
 {
   "name": "gulp-github-release",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Create GitHub releases and upload assets.",
   "main": "index.js",
   "repository": {

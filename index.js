@@ -14,7 +14,7 @@ module.exports = function(options) {
   }, function(callback) {
     var _this = this;
     var manifest = options.manifest;
-    var repo = manifest && manifest.repository && /git@github\.com:([\w-]+)\/([\w-]+)\.git/.exec(manifest.repository.url);
+    var repo = manifest && manifest.repository && /github\.com:?\/?([\w-]+)\/([\w-]+)/.exec(manifest.repository.url);
 
     options = options || {};
     options.token = options.token || process.env.GITHUB_TOKEN;
