@@ -23,7 +23,7 @@
   "homepage": "https://github.com/Aluxian/gulp-github-release",
   "dependencies": {
     "gulp-util": "^3.0.5",
-    "publish-release": "Aluxian/publish-release",
+    "publish-release": "^1.2.0",
     "through2": "^0.6.5"
   }
 }
