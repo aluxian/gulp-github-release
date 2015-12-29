@@ -21,7 +21,7 @@ module.exports = function(options) {
     options.assets = files;
     options.owner = options.owner || repo && repo[1] || undefined;
     options.repo = options.repo || repo && repo[2] || undefined;
-    options.tag = options.tag || manifest && ('v' + manifest.version) || undefined;
+    options.tag = options.tag || manifest && manifest.version || undefined;
     options.name = options.name || options.tag;
 
     var release = publishRelease(options, callback);
