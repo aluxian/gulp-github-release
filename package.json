@@ -1,6 +1,6 @@
 {
   "name": "gulp-github-release",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Create GitHub releases and upload assets.",
   "main": "index.js",
   "repository": {
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/Aluxian/gulp-github-release",
   "dependencies": {
     "gulp-util": "^3.0.5",
-    "publish-release": "Aluxian/publish-release",
+    "publish-release": "1.2.0",
     "through2": "^0.6.5"
   }
 }
