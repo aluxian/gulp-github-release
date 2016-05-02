@@ -1,4 +1,4 @@
-var publishRelease = require('publish-release');
+var publishRelease = require('publish-release-2');
 var through = require('through2');
 var gutil = require('gulp-util');
 

@@ -23,7 +23,7 @@
   "homepage": "https://github.com/Aluxian/gulp-github-release",
   "dependencies": {
     "gulp-util": "^3.0.7",
-    "publish-release": "github:remixz/publish-release#patch-reuseDraftOnly-flag",
+    "publish-release-2": "1.2.0",
     "through2": "^2.0.1"
   }
 }
