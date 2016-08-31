@@ -29,6 +29,14 @@ gulp.task('release', function(){
 });
 ```
 
+If it doesn't work and you get something along these lines:
+
+```
+[18:18:15] Release created successfully at https://github.com/suited/suited.js/releases/tag/1.0.11-alpha+bd.2016-8-31-181759-000.commitish.c86dd46a4d383ae3083df01a38d2b99fee2f0382 events.js:87 throw Error('Uncaught, unspecified "error" event.'); ^ Error: Uncaught, unspecified "error" event. at Error (native) at DestroyableTransform.emit (events.js:87:13) at done (/home/robertk/projects-oss/suited.js/node_modules/through2/node_modules/readable-stream/lib/_stream_transform.js:168:25) at /home/robertk/projects-oss/suited.js/node_modules/through2/node_modules/readable-...
+```
+
+Please see https://github.com/Aluxian/gulp-github-release/issues/3
+
 ## License
 
 The MIT License (MIT)
