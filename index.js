@@ -26,6 +26,12 @@ module.exports = function(options) {
 
     var release = publishRelease(options, callback);
 
+    //handle emmitted errors
+    release.on('error', function(existingError) {
+      gutil.log(existingError);
+      this.emit('end');
+    });
+
     release.on('created-release', function() {
       gutil.log('Release created successfully at https://github.com/' + options.owner + '/' + options.repo + '/releases/tag/' + options.tag);
     });
