@@ -26,14 +26,13 @@ module.exports = function(options) {
 
     var release = publishRelease(options, callback);
 
-    //handle emmitted errors
     release.on('error', function(existingError) {
-      gutil.log(existingError);
-      this.emit('end');
+      this.emit('error', existingError);
     });
 
     release.on('created-release', function() {
-      gutil.log('Release created successfully at https://github.com/' + options.owner + '/' + options.repo + '/releases/tag/' + options.tag);
+      gutil.log('Release created successfully at https://github.com/' +
+        options.owner + '/' + options.repo + '/releases/tag/' + options.tag);
     });
 
     release.on('upload-asset', function(name) {
