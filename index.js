@@ -27,7 +27,7 @@ module.exports = function(options) {
     var release = publishRelease(options, callback);
 
     release.on('error', function(existingError) {
-      this.emit('error', existingError);
+      stream.emit('error', existingError);
     });
 
     release.on('created-release', function() {
