@@ -27,7 +27,11 @@ module.exports = function(options) {
     var release = publishRelease(options, callback);
 
     release.on('error', function(existingError) {
-      stream.emit('error', existingError);
+      if (existingError instanceof Error) {
+        stream.emit('error', existingError);
+      } else {
+        stream.emit('error', new Error(JSON.stringify(existingError)));
+      }
     });
 
     release.on('created-release', function() {
