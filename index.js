@@ -23,6 +23,7 @@ module.exports = function(options) {
     options.repo = options.repo || repo && repo[2] || undefined;
     options.tag = options.tag || manifest && ('v' + manifest.version) || undefined;
     options.name = options.name || options.tag;
+    options.reuseRelease = options.reuseRelease === true || true;
 
     var release = publishRelease(options, callback);
 

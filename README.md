@@ -16,15 +16,16 @@ var release = require('gulp-github-release');
 gulp.task('release', function(){
   gulp.src('./dist/some-file.exe')
     .pipe(release({
-      token: 'token',                     // or you can set an env var called GITHUB_TOKEN instead
-      owner: 'remixz',                    // if missing, it will be extracted from manifest (the repository.url field)
-      repo: 'publish-release',            // if missing, it will be extracted from manifest (the repository.url field)
-      tag: 'v1.0.0',                      // if missing, the version will be extracted from manifest and prepended by a 'v'
-      name: 'publish-release v1.0.0',     // if missing, it will be the same as the tag
-      notes: 'very good!',                // if missing it will be left undefined
-      draft: false,                       // if missing it's false
-      prerelease: false,                  // if missing it's false
-      manifest: require('./package.json') // package.json from which default values will be extracted if they're missing
+      token: 'token',                      // or you can set an env var called GITHUB_TOKEN instead
+      owner: 'remixz',                     // if missing, it will be extracted from manifest (the repository.url field)
+      repo: 'publish-release',             // if missing, it will be extracted from manifest (the repository.url field)
+      tag: 'v1.0.0',                       // if missing, the version will be extracted from manifest and prepended by a 'v'
+      name: 'publish-release v1.0.0',      // if missing, it will be the same as the tag
+      notes: 'very good!',                 // if missing it will be left undefined
+      draft: false,                        // if missing it's false
+      prerelease: false,                   // if missing it's false
+      manifest: require('./package.json'), // package.json from which default values will be extracted if they're missing
+      reuseRelease: true                   // if missing it's true
     }));
 });
 ```
