@@ -17,12 +17,13 @@ module.exports = function(options) {
     var repo = manifest && manifest.repository && /github\.com:?\/?([\w-]+)\/([\w-]+)/.exec(manifest.repository.url);
 
     options = options || {};
-    options.token = options.token || process.env.GITHUB_TOKEN;
+    options.token = options.token || process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
     options.assets = files;
     options.owner = options.owner || repo && repo[1] || undefined;
     options.repo = options.repo || repo && repo[2] || undefined;
     options.tag = options.tag || manifest && ('v' + manifest.version) || undefined;
     options.name = options.name || options.tag;
+    options.reuseRelease = options.reuseRelease === true || true;
 
     var release = publishRelease(options, callback);
 
